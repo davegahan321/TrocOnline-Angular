@@ -1,0 +1,15 @@
+
+    <mat-card class="card">
+      <mat-card-title> {{Items.name}}</mat-card-title>
+      <mat-card-content>
+        <p *ngIf="Items.description"> <span class="label">Description:</span>
+          {{Items.description}}
+        </p>
+        <p *ngIf="Items.value"> <span class="label">Value:</span>
+          {{Items.value}}
+        </p>
+        <p *ngIf="IsinInventory()">
+          <button>edit</button>
+        </p>
+      </mat-card-content>
+    </mat-card>

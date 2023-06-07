@@ -1,0 +1,34 @@
+<p>item-form works!</p>
+<div class="row">
+    <div class="col-md-6 offset-md-3 mt-4">
+        <h3>Add Item</h3>
+        <form #f="ngForm" (ngSubmit)="onSubmit(f)">
+            
+              <div class="mb-3">
+                <label for="ItemName" class="form-label">Item Name</label>
+                <input type="text" name="name" ngModel required #name="ngModel"
+                class="form-control" 
+                id="ItemName" 
+                placeholder="Enter Item Name">
+              </div>
+              <div class="mb-3">
+                <label for="ItemValue" class="form-label">Value</label>
+                <input type="number" name="value" ngModel required #value="ngModel"
+                class="form-control" 
+                id="ItemValue" 
+                placeholder="Enter Item Value">
+              </div>
+
+            <div class="mb-3">
+              <label for="ItemDescription" class="form-label">Item Description</label>
+              <input type="text" name="description" ngModel required #description="ngModel"
+              class="form-control" 
+              id="ItemDescription"
+              placeholder="Item Description">
+            </div>
+
+            <button type="submit" [disabled]="f.invalid"
+            class="btn btn-primary">Add Item <i class="fa-solid fa-arrow-right-from-bracket"></i></button>
+          </form>
+    </div>
+</div>

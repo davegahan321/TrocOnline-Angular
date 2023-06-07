@@ -1,0 +1,16 @@
+/* You can add global styles to this file, and also import other style files */
+ /* "../TrocOnline-Angular/node_modules/bootstrap/dist/css/bootstrap.css"  IN ANGULAR.JSON !!! */
+ body{
+  background-image: url("assets/img/background.jpg");
+  background-size : cover;
+}
+
+.ng-valid[required], .ng-valid.required  {
+    border-left: 5px solid #42A948; /* green */
+  }
+  
+  .ng-invalid:not(form)  {
+    border-left: 5px solid #a94442; /* red */
+  }
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

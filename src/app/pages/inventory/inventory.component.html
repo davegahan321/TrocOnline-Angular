@@ -1,0 +1,11 @@
+<p>inventory workfsdfsds!</p>
+<div>
+    <button (click)="goToItemForm()" >Add Item</button>
+</div>
+
+<div class="container">
+    <div>
+        <app-card  *ngFor="let item of items|async" [Items]="item" ></app-card>
+    </div>
+</div>
+

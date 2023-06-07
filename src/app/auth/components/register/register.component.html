@@ -1,0 +1,47 @@
+<div class="row">
+    <div class="col-md-6 offset-md-3 mt-4">
+        <h3>Register</h3>
+        <form #f="ngForm" (ngSubmit)="onSubmit(f)">
+            <!-- <div class="mb-3">
+              <label for="RegisterUserName" class="form-label">User Name</label>
+              <input type="text" name="username" ngModel required #username="ngModel"
+              class="form-control" 
+              id="RegisterUserName" 
+              placeholder="Enter User Name">
+            </div> -->
+            <div class="mb-3">
+                <label for="RegisterEmail" class="form-label">Email address</label>
+                <input type="email" name="email" ngModel required #email="ngModel"
+                class="form-control" 
+                id="RegisterEmail" 
+                placeholder="Enter Email">
+                
+              </div>
+              <div class="mb-3">
+                <label for="RegisterFirstName" class="form-label">First Name</label>
+                <input type="text" name="firstname" ngModel required #firstname="ngModel"
+                class="form-control" 
+                id="RegisterFirstName" 
+                placeholder="Enter First Name">
+              </div>
+              <div class="mb-3">
+                <label for="RegisterLastName" class="form-label">Last Name</label>
+                <input type="text" name="lastname" ngModel required #lastname="ngModel"
+                class="form-control" 
+                id="RegisterLastName" 
+                placeholder="Enter Last Name">
+              </div>
+
+            <div class="mb-3">
+              <label for="registerPassword" class="form-label">Password</label>
+              <input type="password" name="password" ngModel required #password="ngModel"
+              class="form-control" 
+              id="loginPassword"
+              placeholder="Password">
+            </div>
+
+            <button type="submit" [disabled]="f.invalid"
+            class="btn btn-primary">Register <i class="fa-solid fa-arrow-right-from-bracket"></i></button>
+          </form>
+    </div>
+</div>
