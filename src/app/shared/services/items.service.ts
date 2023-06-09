@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http'
-import { ActivatedRoute, UrlSerializer } from '@angular/router';
+import { ActivatedRoute, Router, UrlSerializer } from '@angular/router';
 import { map, Observable, subscribeOn } from 'rxjs';
 import { ItemsObject } from 'src/app/models/ItemModel';
 import { filter, take, tap } from 'rxjs/operators';
@@ -23,7 +23,7 @@ export class ItemsService {
   Token = sessionStorage.getItem('token');
   private items = Observable<ItemsObject[]>;
   private player : string ='';
-  constructor(private http: HttpClient,private router: ActivatedRoute) { }
+  constructor(private http: HttpClient,private router: ActivatedRoute,private router2:Router) { }
   
   getAllItems(): Observable<ItemsObject[]>{
     let headers = new HttpHeaders({
@@ -65,6 +65,7 @@ export class ItemsService {
     this.decodedToken= this.helper.decodeToken(token!)
     console.log(this.decodedToken.nameid);
     model.owner_Id =this.decodedToken.nameid;
+    this.router2.navigate(['inventory']).then(()=>window.location.reload());
     return this.http.post(this.ItemsUrl+'AddItem',model,options)
   }
 
@@ -88,7 +89,19 @@ export class ItemsService {
     model.owner_Id =this.decodedToken.nameid;
     model.id= id;
     console.log(model);
+    this.router2.navigate(['inventory']).then(()=>window.location.reload());
     return this.http.put<ItemsObject[]>(this.ItemsUrl+id,model,options);
+  }
+
+  deleteItem(id :number){
+    let headers = new HttpHeaders({
+      'Authorization' : "Bearer "+this.Token!
+    });
+    let options = {headers:headers}
+    const token = sessionStorage.getItem('token')
+    this.decodedToken= this.helper.decodeToken(token!);
+    this.router2.navigate(['inventory']).then(()=>window.location.reload());
+    return this.http.delete(this.ItemsUrl+id,options);
   }
   
 }

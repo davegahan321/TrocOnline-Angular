@@ -47,12 +47,26 @@ export class EditItemComponent implements OnInit {
       error : (err: any) => console.log(err)
       
     };
+
+  
     let itemId=Number(this.router.snapshot.params['id'])
     this.itemService.updateItem(itemId,f.value).subscribe(EditItemObserver);
 
 }
 
+onDelete(){
 
+  const DeleteItemObserver = {
+
+    next : (x: any) => console.log('Item Deleted !!'),
+    error : (err: any) => console.log(err)
+    
+  };
+
+  let itemId=this.router.snapshot.params['id'];
+  console.log(itemId);
+  return this.itemService.deleteItem(itemId).subscribe(DeleteItemObserver);
+}
 
 
 }

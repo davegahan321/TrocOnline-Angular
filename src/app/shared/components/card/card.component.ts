@@ -1,8 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ItemsObject } from 'src/app/models/ItemModel';
 import { RiverComponent } from 'src/app/pages/river/river.component';
+import { ItemsService } from '../../services/items.service';
 
 @Component({
   selector: 'app-card',
@@ -12,7 +13,7 @@ import { RiverComponent } from 'src/app/pages/river/river.component';
 })
 export class CardComponent {
 
-  constructor(private http: HttpClient,private router : Router) { }
+  constructor(private http: HttpClient,private router : Router,private actRouter :ActivatedRoute,private itemService: ItemsService) { }
  
   @Input() Items! : ItemsObject
   ItemsUrl= "https://localhost:44330/api/Items/";
@@ -31,5 +32,7 @@ export class CardComponent {
     var ItemId= this.Items.id;
     this.router.navigate(['/edit-item/',ItemId]).then(()=>window.location.reload());
   }
+
+  
 
 }
