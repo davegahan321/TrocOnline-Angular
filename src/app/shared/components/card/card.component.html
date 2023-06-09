@@ -9,7 +9,7 @@
           {{Items.value}}
         </p>
         <p *ngIf="IsinInventory()">
-          <button>edit</button>
+          <button (click)="goToItemEdit()">edit</button>
         </p>
       </mat-card-content>
     </mat-card>

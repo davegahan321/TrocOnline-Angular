@@ -1,1 +1,45 @@
 <p>edit-item works!</p>
+<div class="row">
+    <div class="col-md-6 offset-md-3 mt-4">
+        <h3>Edit Item</h3>
+        <form #f="ngForm" (ngSubmit)="onSubmit(f)">
+            
+              <div class="mb-3">
+                <label for="ItemName" class="form-label">Item Name</label>
+                <input type="text" name="name" [(ngModel)]="formdata.name" required #name="ngModel"
+                class="form-control" 
+                id="ItemName" 
+                placeholder="Enter Item Name">
+              </div>
+              <div class="mb-3">
+                <label for="ItemValue" class="form-label">Value</label>
+                <input type="number" name="value" [(ngModel)]="formdata.value" required #value="ngModel"
+                class="form-control" 
+                id="ItemValue" 
+                placeholder="Enter Item Value">
+              </div>
+
+            <div class="mb-3">
+              <label for="ItemDescription" class="form-label">Item Description</label>
+              <input type="text" name="description" [(ngModel)]="formdata.description" required #description="ngModel"
+              class="form-control" 
+              id="ItemDescription"
+              placeholder="Item Description">
+            </div>
+
+            <div class="mb-3">
+                <label for="ToSale" class="form-label">ToSale</label>
+                <p>
+                <input type="radio"  name="ToSale" [value]="true" [(ngModel)]="formdata.ToSale"> 
+                <label >True</label><br>
+                <input type="radio" name="ToSale" [value]="false" [(ngModel)]="formdata.ToSale">
+                <label >False</label><br>
+                </p>
+            </div>
+
+            <button type="submit" [disabled]="f.invalid"
+            class="btn btn-primary">Update Item <i class="fa-solid fa-arrow-right-from-bracket"></i></button>
+          </form>
+    </div>
+</div>
+

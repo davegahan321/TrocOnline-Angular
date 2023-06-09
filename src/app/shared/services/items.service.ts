@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http'
-import { UrlSerializer } from '@angular/router';
+import { ActivatedRoute, UrlSerializer } from '@angular/router';
 import { map, Observable, subscribeOn } from 'rxjs';
 import { ItemsObject } from 'src/app/models/ItemModel';
 import { filter, take, tap } from 'rxjs/operators';
@@ -23,7 +23,7 @@ export class ItemsService {
   Token = sessionStorage.getItem('token');
   private items = Observable<ItemsObject[]>;
   private player : string ='';
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient,private router: ActivatedRoute) { }
   
   getAllItems(): Observable<ItemsObject[]>{
     let headers = new HttpHeaders({
@@ -76,6 +76,19 @@ export class ItemsService {
     const token = sessionStorage.getItem('token')
     this.decodedToken= this.helper.decodeToken(token!)
     return this.http.get(this.ItemsUrl+id,options)
+  }
+
+  updateItem(id :number,model:ItemsObject){
+    let headers = new HttpHeaders({
+      'Authorization' : "Bearer "+this.Token!
+    });
+    let options = {headers:headers};
+    const token = sessionStorage.getItem('token')
+    this.decodedToken= this.helper.decodeToken(token!)
+    model.owner_Id =this.decodedToken.nameid;
+    model.id= id;
+    console.log(model);
+    return this.http.put<ItemsObject[]>(this.ItemsUrl+id,model,options);
   }
   
 }

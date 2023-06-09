@@ -28,7 +28,8 @@ export class CardComponent {
   }
 
   goToItemEdit(){
-    this.router.navigate(['edit-item/{{Items.id}}']).then(()=>window.location.reload());
+    var ItemId= this.Items.id;
+    this.router.navigate(['/edit-item/',ItemId]).then(()=>window.location.reload());
   }
 
 }
