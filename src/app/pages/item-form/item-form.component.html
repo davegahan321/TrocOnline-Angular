@@ -26,9 +26,13 @@
               id="ItemDescription"
               placeholder="Item Description">
             </div>
+            <div>
+              <label>insert item image</label>
+              <input type="file" name="image" (change)="onFileSelected($event)">
+            </div>
 
             <button type="submit" [disabled]="f.invalid"
-            class="btn btn-primary">Add Item <i class="fa-solid fa-arrow-right-from-bracket"></i></button>
+            class="btn btn-primary" >Add Item <i class="fa-solid fa-arrow-right-from-bracket"></i></button>
           </form>
     </div>
 </div>

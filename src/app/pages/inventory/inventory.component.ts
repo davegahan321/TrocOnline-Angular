@@ -17,6 +17,8 @@ export class InventoryComponent implements OnInit {
   constructor(private itemService: ItemsService, private router : Router) { }
   
   items = new Observable<ItemsObject[]>();
+  imageurl!:string
+  
   ngOnInit(): void {
     this.items=this.itemService.getInventoryItems();
     

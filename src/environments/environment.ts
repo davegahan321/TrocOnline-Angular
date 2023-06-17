@@ -3,7 +3,16 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  firebaseConfig : {
+    apiKey: "AIzaSyDOCeWWUjU-ntPY0FYoipqbYjXwkOpKQsY",
+    authDomain: "troconlinev4.firebaseapp.com",
+    projectId: "troconlinev4",
+    storageBucket: "troconlinev4.appspot.com",
+    messagingSenderId: "111521056270",
+    appId: "1:111521056270:web:0e6224f75273448b09de5f",
+    measurementId: "G-SV57QDMTLP"
+  }
 };
 
 /*

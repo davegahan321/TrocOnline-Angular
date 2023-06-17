@@ -16,6 +16,9 @@ import { OffersComponent } from './pages/offers/offers.component';
 import { ItemFormComponent } from './pages/item-form/item-form.component';
 import { FormsModule } from '@angular/forms';
 import { EditItemComponent } from './pages/edit-item/edit-item.component';
+import {AngularFireModule} from '@angular/fire/compat';
+import {AngularFireStorageModule} from '@angular/fire/compat/storage';
+import { environment } from 'src/environments/environment';
 
 
 
@@ -38,7 +41,9 @@ import { EditItemComponent } from './pages/edit-item/edit-item.component';
     BrowserAnimationsModule,
     MatCardModule,
     MatButtonModule,
-    FormsModule
+    FormsModule,
+    AngularFireModule.initializeApp(environment.firebaseConfig),
+    AngularFireStorageModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,7 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { AngularFireStorage } from '@angular/fire/compat/storage';
 import { FormBuilder, FormControl, FormGroup, NgForm } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
+import { Observable } from 'rxjs';
 import { ItemsService } from 'src/app/shared/services/items.service';
 
 @Component({
@@ -12,9 +14,14 @@ import { ItemsService } from 'src/app/shared/services/items.service';
 export class EditItemComponent implements OnInit {
   form!: FormGroup;
   formdata: any;
-  constructor(private router: ActivatedRoute,private itemService: ItemsService,private http: HttpClient) { }
+  selectedFile!: File;
+  constructor(private router: ActivatedRoute,private itemService: ItemsService,private http: HttpClient,private firestorage: AngularFireStorage) { }
   
-  
+  getImageUrl(imagepath:string):Observable<string>{
+    const storageRef=this.firestorage.ref(imagepath);
+    return storageRef.getDownloadURL();
+
+  }
 
   ngOnInit(): void {
     console.log(this.router.snapshot.params['id']);
@@ -41,6 +48,22 @@ export class EditItemComponent implements OnInit {
     // });
   }
   onSubmit(f: NgForm) {
+
+    console.log(this.selectedFile);
+    if(this.selectedFile){
+      console.log(this.selectedFile);
+      const path = 'images/'+this.selectedFile.name;
+      this.firestorage.upload(path,this.selectedFile);
+      this.getImageUrl(path).subscribe((imageurl=>{
+        const url ={
+          imageurl:imageurl
+        }
+        let itemId=Number(this.router.snapshot.params['id'])
+        this.itemService.updateItem(itemId,f.value,imageurl).subscribe(EditItemObserver);
+      }));
+      
+       //const url = (await (await uploadTask).ref.getDownloadURL()).toString()
+    }
     const EditItemObserver = {
 
       next : (x: any) => console.log('Item Updated !!'),
@@ -49,9 +72,13 @@ export class EditItemComponent implements OnInit {
     };
 
   
-    let itemId=Number(this.router.snapshot.params['id'])
-    this.itemService.updateItem(itemId,f.value).subscribe(EditItemObserver);
+    //let itemId=Number(this.router.snapshot.params['id'])
+   // this.itemService.updateItem(itemId,f.value).subscribe(EditItemObserver);
 
+}
+
+onFileSelected(event:any){
+  this.selectedFile = event.target.files[0];
 }
 
 onDelete(){

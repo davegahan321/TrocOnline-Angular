@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, Renderer2 } from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http'
 import { ActivatedRoute, Router, UrlSerializer } from '@angular/router';
 import { map, Observable, subscribeOn } from 'rxjs';
@@ -8,6 +8,7 @@ import { PlayerObject } from 'src/app/models/PlayerModel';
 import {AuthService} from '../services/auth.service'
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { identifierName } from '@angular/compiler';
+import { AngularFireStorage } from '@angular/fire/compat/storage';
 
 @Injectable({
   providedIn: 'root'
@@ -23,7 +24,8 @@ export class ItemsService {
   Token = sessionStorage.getItem('token');
   private items = Observable<ItemsObject[]>;
   private player : string ='';
-  constructor(private http: HttpClient,private router: ActivatedRoute,private router2:Router) { }
+  
+  constructor(private http: HttpClient,private router: ActivatedRoute,private router2:Router,private firestorage:AngularFireStorage) { }
   
   getAllItems(): Observable<ItemsObject[]>{
     let headers = new HttpHeaders({
@@ -56,16 +58,25 @@ export class ItemsService {
     return this.http.get<ItemsObject[]>(this.InventoryUrl+this.decodedToken.nameid,options)
   }
 
-  AddItem(model:ItemsObject){
+  
+
+  AddItem(model:ItemsObject,url:string){
     let headers = new HttpHeaders({
       'Authorization' : "Bearer "+this.Token!
     });
     let options = {headers:headers};
+
+  
+    
+    
+
     const token = sessionStorage.getItem('token')
     this.decodedToken= this.helper.decodeToken(token!)
     console.log(this.decodedToken.nameid);
     model.owner_Id =this.decodedToken.nameid;
-    this.router2.navigate(['inventory']).then(()=>window.location.reload());
+    model.imageUrl=url;
+    
+    //this.router2.navigate(['inventory']).then(()=>window.location.reload());
     return this.http.post(this.ItemsUrl+'AddItem',model,options)
   }
 
@@ -79,7 +90,7 @@ export class ItemsService {
     return this.http.get(this.ItemsUrl+id,options)
   }
 
-  updateItem(id :number,model:ItemsObject){
+  updateItem(id :number,model:ItemsObject,url:string){
     let headers = new HttpHeaders({
       'Authorization' : "Bearer "+this.Token!
     });
@@ -88,6 +99,7 @@ export class ItemsService {
     this.decodedToken= this.helper.decodeToken(token!)
     model.owner_Id =this.decodedToken.nameid;
     model.id= id;
+    model.imageUrl=url;
     console.log(model);
     this.router2.navigate(['inventory']).then(()=>window.location.reload());
     return this.http.put<ItemsObject[]>(this.ItemsUrl+id,model,options);
@@ -102,6 +114,16 @@ export class ItemsService {
     this.decodedToken= this.helper.decodeToken(token!);
     this.router2.navigate(['inventory']).then(()=>window.location.reload());
     return this.http.delete(this.ItemsUrl+id,options);
+  }
+
+  getImagebyItemId(id:number){
+    let headers = new HttpHeaders({
+      'Authorization' : "Bearer "+this.Token!
+    });
+    let options = {headers:headers}
+    const token = sessionStorage.getItem('token')
+    this.decodedToken= this.helper.decodeToken(token!);
+    return this.http.get(this.ItemsUrl+'getImage/'+id,options);
   }
   
 }

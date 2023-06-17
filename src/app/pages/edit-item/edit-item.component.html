@@ -36,6 +36,10 @@
                 <label >False</label><br>
                 </p>
             </div>
+            <div>
+              <label>insert item image</label>
+              <input type="file" name="image"  [(ngModel)]="formdata.imageUrl" (change)="onFileSelected($event)" >
+            </div>
 
             <button type="submit" [disabled]="f.invalid"
             class="btn btn-primary">Update Item <i class="fa-solid fa-arrow-right-from-bracket"></i></button>

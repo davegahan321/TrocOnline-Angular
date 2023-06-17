@@ -5,6 +5,7 @@ import { ItemsObject } from 'src/app/models/ItemModel';
 import { RiverComponent } from 'src/app/pages/river/river.component';
 import { ItemsService } from '../../services/items.service';
 
+
 @Component({
   selector: 'app-card',
   templateUrl: './card.component.html',
@@ -17,6 +18,8 @@ export class CardComponent {
  
   @Input() Items! : ItemsObject
   ItemsUrl= "https://localhost:44330/api/Items/";
+  imageurl!:string 
+  
 
   IsinInventory(){
     return this.router.url.includes('inventory');
@@ -32,6 +35,8 @@ export class CardComponent {
     var ItemId= this.Items.id;
     this.router.navigate(['/edit-item/',ItemId]).then(()=>window.location.reload());
   }
+
+  
 
   
 
