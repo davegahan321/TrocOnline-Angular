@@ -9,10 +9,18 @@
           {{Items.value}}
         </p>
         <p>
-          <img  [src]="Items.imageUrl" >
+          <img id="img" [src]="Items.imageUrl" >
         </p>
         <p *ngIf="IsinInventory()">
           <button (click)="goToItemEdit()">edit</button>
+        </p>
+
+        <p *ngIf="Items.owner_Id!=userid"  >
+            <button (click)="yoink2(Items.id,Items.owner_Id)">Trade</button>
+        </p>
+
+        <p *ngIf="IsinInventory()">
+          <button (click)="yoink1(Items.id)">AddToOffer</button>
         </p>
         
       </mat-card-content>

@@ -2,7 +2,7 @@ export interface ItemsObject{
     id: number;
     name: string;
     value: number;
-    owner_Id: number;
+    owner_Id: string;
     toSale: boolean;
     description: string;
     imageUrl:string;

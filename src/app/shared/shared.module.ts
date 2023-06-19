@@ -7,12 +7,14 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CardComponent } from './components/card/card.component';
 import {MatCardModule} from '@angular/material/card';
 import {MatButtonModule} from '@angular/material/button';
+import { OfferCardComponent } from './components/offer-card/offer-card.component';
 
 
 @NgModule({
   declarations: [
     HeaderComponent,
-    CardComponent
+    CardComponent,
+    OfferCardComponent
   ],
   imports: [
     CommonModule,
@@ -24,7 +26,8 @@ import {MatButtonModule} from '@angular/material/button';
   ],
   exports:[
     HeaderComponent,
-    CardComponent
+    CardComponent,
+    OfferCardComponent
   ]
 })
 export class SharedModule { }

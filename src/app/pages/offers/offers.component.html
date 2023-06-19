@@ -1,1 +1,8 @@
-<p>offers works!</p>
+<h1 class="Title">OFFERS</h1>
+
+<div class="container">
+    <div>
+        <app-offer-card  *ngFor="let offer of offers|async" [Offers]="offer" ></app-offer-card>
+        
+    </div>
+</div>

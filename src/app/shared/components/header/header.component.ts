@@ -21,4 +21,6 @@ export class HeaderComponent implements OnInit {
     this.router.navigate(['']).then(()=>window.location.reload());
   }
 
+
+  
 }

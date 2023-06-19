@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
+import { OffersObject } from 'src/app/models/offerModel';
+import { OffersService } from 'src/app/shared/services/offers.service';
 
 @Component({
   selector: 'app-offers',
@@ -7,9 +10,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class OffersComponent implements OnInit {
 
-  constructor() { }
-
+  constructor(private offersService: OffersService) { }
+  offers = new Observable<OffersObject[]>();
+  
   ngOnInit(): void {
+    this.offers=this.offersService.getOffers();
   }
 
 }
