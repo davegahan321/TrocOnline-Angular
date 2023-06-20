@@ -17,6 +17,7 @@ export class AuthService {
   PlayerIdUrl = "https://localhost:44330/api/Players/GetPlayerId/"
   helper = new JwtHelperService();
   decodedToken : any;
+  Token = sessionStorage.getItem('token');
   constructor(private http: HttpClient, private router : Router) { }
 
   
@@ -78,14 +79,15 @@ export class AuthService {
     
   }
 
-//   SetPlayerId(){
+  getPlayerInfo(id:string){
+    let headers = new HttpHeaders({
+      'Authorization' : "Bearer "+this.Token!
+    });
+    let options = {headers:headers};
+    const token = sessionStorage.getItem('token')
+    this.decodedToken= this.helper.decodeToken(token!)
 
-//     this.getPlayerId().subscribe(
-//       data =>{
-//         const id =data[0];
-//         sessionStorage.setItem('playerId',id.id.toString());
-//       }
-//     )
-// }
+    return this.http.get(this.PlayerIdUrl+id,options);
+  }
 
 }

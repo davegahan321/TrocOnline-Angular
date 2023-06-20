@@ -3,18 +3,21 @@
     <mat-card-title> Offer</mat-card-title>
 
     <mat-card-content>
-        <p > 
-            you receive item1_name with value item1_value from {{Offers.offerer_Id}} 
+      <p>
+        {{Offers.id}} asdasasdfsd
+      </p>
+        <p class="description"> 
+            you receive {{iteminfo1.name}} with {{iteminfo1.value.toString()}} Value from {{player1info[0].firstName}} {{player1info[0].lastName}} with id {{player1info[0].id}}
           </p>
           <p>
             FOR
           </p>
 
-          <p > 
-            your item2_name with value item2_value and you are {{Offers.receiver_Id}}
+          <p class="description"> 
+            your {{iteminfo2.name}} with {{iteminfo2.value.toString()}} Value and you are {{player2info[0].firstName}} {{player2info[0].lastName}}
           </p>
-          <button>Accept</button>
-          <button>Decline</button>
+          <button (click)="onAccept(Offers.id)">Accept</button>
+          <button (click)="onDelete(Offers.id)">Decline</button>
           
     </mat-card-content>
 </mat-card>

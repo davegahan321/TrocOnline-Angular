@@ -6,6 +6,7 @@ import { RiverComponent } from 'src/app/pages/river/river.component';
 import { ItemsService } from '../../services/items.service';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { OffersService } from '../../services/offers.service';
+import { Offer_ItemsObject } from 'src/app/models/offer_itemsModel';
 
 
 @Component({
@@ -79,11 +80,39 @@ export class CardComponent {
       Receiver_Id
     }
 
-    this.offersService.postOffer(model).subscribe();
+    this.offersService.postOffer(model).subscribe((response:any)=>{
+      console.log(response);
+      var model1:any;
+      var model2:any;
+      var Item_Id : number; 
+      var Offer_Id:any;
+
+      Item_Id= Number(sessionStorage.getItem('OFFERER_Item'));
+      Offer_Id = response.id
+      model1 ={
+        Item_Id ,
+        Offer_Id
+      }
+
+      this.offersService.postOffer_Items(model1).subscribe((response)=>{
+        console.log(response);
+      });
+      sessionStorage.removeItem('OFFERER_Item');
+      Item_Id = Number(sessionStorage.getItem('RECEIVER_Item'));
+      model2 ={
+        Item_Id,
+        Offer_Id
+      }
+      this.offersService.postOffer_Items(model2).subscribe((response)=>{
+        console.log(response);
+      });
+      sessionStorage.removeItem('RECEIVER_Item');
+
+    });
     sessionStorage.removeItem('OFFERER_Id');
-    sessionStorage.removeItem('OFFERER_Item');
+    //sessionStorage.removeItem('OFFERER_Item');
     sessionStorage.removeItem('RECEIVER_Id');
-    sessionStorage.removeItem('RECEIVER_Item');
+    //sessionStorage.removeItem('RECEIVER_Item');
     
   }
 

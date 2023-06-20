@@ -9,6 +9,7 @@ import {AuthService} from '../services/auth.service'
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { identifierName } from '@angular/compiler';
 import { AngularFireStorage } from '@angular/fire/compat/storage';
+import { UpdateOwner_IdObject } from 'src/app/models/UpdateOwner_IdModel';
 
 @Injectable({
   providedIn: 'root'
@@ -124,6 +125,18 @@ export class ItemsService {
     const token = sessionStorage.getItem('token')
     this.decodedToken= this.helper.decodeToken(token!);
     return this.http.get(this.ItemsUrl+'getImage/'+id,options);
+  }
+
+  UpdateOwner_Id(id:number,model:UpdateOwner_IdObject){
+    let headers = new HttpHeaders({
+      'Authorization' : "Bearer "+this.Token!
+    });
+    let options = {headers:headers}
+    const token = sessionStorage.getItem('token')
+    this.decodedToken= this.helper.decodeToken(token!);
+    //var jsonOwner = JSON.stringify(Owner);
+    //console.log(jsonOwner);
+    return this.http.put(this.ItemsUrl+"UpdateOwner_Id/"+id,model,options);
   }
   
 }

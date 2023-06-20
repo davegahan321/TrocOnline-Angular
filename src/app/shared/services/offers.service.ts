@@ -1,5 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { OffersObject } from 'src/app/models/offerModel';
 import { Offer_ItemsObject } from 'src/app/models/offer_itemsModel';
@@ -15,7 +16,7 @@ export class OffersService {
   decodedToken : any;
   Token = sessionStorage.getItem('token');
   
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient,private router :Router) { }
 
   getOffers(){
     let headers = new HttpHeaders({
@@ -56,7 +57,7 @@ export class OffersService {
     return this.http.get(this.offer_itemUrl,options);
   }
 
-  postOffer_Items(model:Offer_ItemsObject,item:number,offer:number){
+  postOffer_Items(model:Offer_ItemsObject){
     let headers = new HttpHeaders({
            'Authorization' : "Bearer "+this.Token!
          });
@@ -65,10 +66,35 @@ export class OffersService {
     this.decodedToken= this.helper.decodeToken(token!)
     console.log(this.decodedToken.nameid);
 
-    model.Item_Id=item;
-    model.Offer_Id=offer;
+    //model.Item_Id=item;
+    //model.Offer_Id=offer;
     
     return this.http.post(this.offer_itemUrl,model,options)
+  }
+
+
+  GetOffer_ItemsById(Id: number){
+    let headers = new HttpHeaders({
+           'Authorization' : "Bearer "+this.Token!
+         });
+    let options = {headers:headers};
+    const token = sessionStorage.getItem('token')
+    this.decodedToken= this.helper.decodeToken(token!)
+    console.log(this.decodedToken.nameid);
+
+    return this.http.get(this.offer_itemUrl+'GetOffer_ItemsById/'+Id,options);
+  }
+
+  deleteOffer(id:number){
+    let headers = new HttpHeaders({
+           'Authorization' : "Bearer "+this.Token!
+         });
+    let options = {headers:headers};
+    const token = sessionStorage.getItem('token')
+    this.decodedToken= this.helper.decodeToken(token!)
+    console.log(this.decodedToken.nameid);
+    this.router.navigate(['offers']).then(()=>window.location.reload());
+    return this.http.delete(this.offersUrl+id,options);
   }
 
 }

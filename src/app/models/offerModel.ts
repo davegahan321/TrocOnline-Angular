@@ -1,5 +1,5 @@
 export interface OffersObject{
-    Id: number;
+    id: number;
     offerer_Id:string;
     receiver_Id:string;
 }
