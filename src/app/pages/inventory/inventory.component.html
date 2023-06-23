@@ -1,12 +1,17 @@
-<p>inventory workfsdfsds!</p>
-<div>
-    <button (click)="goToItemForm()" >Add Item</button>
+
+<div class="addButton">
+    <button class="button" mat-button (click)="goToItemForm()" >Add Item</button>
 </div>
 
 <div class="container">
-    <div>
+    <main class="grid">
+        <app-card  *ngFor="let item of items|async" [Items]="item" ></app-card>
+
+    </main>
+    <!-- <div>
         <app-card  *ngFor="let item of items|async" [Items]="item" ></app-card>
         
-    </div>
+    </div> -->
+    
 </div>
 

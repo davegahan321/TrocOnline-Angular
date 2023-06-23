@@ -1,7 +1,8 @@
-<p>river works!</p>
+
 
 <div class="container">
-    <div>
-        <app-card  *ngFor="let item of items|async" [Items]="item"></app-card>
-    </div>
+    <main class="grid">
+        <app-card  *ngFor="let item of items|async" [Items]="item" ></app-card>
+
+    </main>
 </div>

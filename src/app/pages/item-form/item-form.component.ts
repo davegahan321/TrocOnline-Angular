@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFireStorage } from '@angular/fire/compat/storage';
 import { NgForm } from '@angular/forms';
+import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { ItemsService } from 'src/app/shared/services/items.service';
 
@@ -12,7 +13,7 @@ import { ItemsService } from 'src/app/shared/services/items.service';
 export class ItemFormComponent implements OnInit {
   selectedFile!: File;
   urlpath!:string
-  constructor(private itemsservice :ItemsService,private firestorage: AngularFireStorage) { }
+  constructor(private itemsservice :ItemsService,private firestorage: AngularFireStorage,private router:Router) { }
 
 
   ngOnInit(): void {
@@ -63,6 +64,7 @@ export class ItemFormComponent implements OnInit {
           imageurl:imageurl
         }
         this.itemsservice.AddItem(f.value,imageurl).subscribe(AddItemObserver);
+        this.router.navigate(['inventory']).then(()=>window.location.reload());
       }));
       
        //const url = (await (await uploadTask).ref.getDownloadURL()).toString()

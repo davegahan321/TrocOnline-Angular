@@ -6,6 +6,7 @@ import { ItemsObject } from 'src/app/models/ItemModel';
 import { PlayerObject } from 'src/app/models/PlayerModel';
 import { ItemsService } from 'src/app/shared/services/items.service';
 
+
 @Component({
   selector: 'app-inventory',
   templateUrl: './inventory.component.html',

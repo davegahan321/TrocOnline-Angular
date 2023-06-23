@@ -1,8 +1,32 @@
 .card {
     max-width: 400px;
+    margin-bottom: 8px;
+    display: flex;
+    justify-content: space-between;
+    background-color: black;
+    border-style: solid;
+    border-color: darkblue;
+    font-family: sans-serif;
   }
+
+.text{
+  color: white;
+}
+
+.button{
+  color: white;
+  border-style: solid;
+  border-color: black;
+  background-color: darkblue;
+}
 
 img{
   max-width: 200px;
-  max-height: 100px;
+  max-height: 200px;
+}
+.content{
+  overflow: hidden;
+}
+.mat-card-xl-image{
+  margin: 0;
 }

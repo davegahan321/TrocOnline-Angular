@@ -1,23 +1,32 @@
 
 <mat-card class="card">
-    <mat-card-title> Offer</mat-card-title>
-
-    <mat-card-content>
+  <mat-card-header class="Header">
+    <mat-card-title> 
       <p>
-        {{Offers.id}} asdasasdfsd
+        Offer  {{Offers.id}}
       </p>
+    </mat-card-title>
+  </mat-card-header>
+    
+   
+    <mat-card-content class="content">
+      
         <p class="description"> 
-            you receive {{iteminfo1.name}} with {{iteminfo1.value.toString()}} Value from {{player1info[0].firstName}} {{player1info[0].lastName}} with id {{player1info[0].id}}
+            You receive {{iteminfo1.name}} with {{iteminfo1.value.toString()}} Value from {{player1info[0].firstName}} {{player1info[0].lastName}} 
           </p>
-          <p>
+          <p class="for">
             FOR
           </p>
 
           <p class="description"> 
-            your {{iteminfo2.name}} with {{iteminfo2.value.toString()}} Value and you are {{player2info[0].firstName}} {{player2info[0].lastName}}
+            Your {{iteminfo2.name}} with {{iteminfo2.value.toString()}} Value 
           </p>
-          <button (click)="onAccept(Offers.id)">Accept</button>
-          <button (click)="onDelete(Offers.id)">Decline</button>
+
+          <p class="buttons">
+            <button class="button" mat-button (click)="onAccept(Offers.id)">Accept</button>
+            <button class="button" mat-button (click)="onDelete(Offers.id)">Decline</button>
+          </p>
+          
           
     </mat-card-content>
 </mat-card>

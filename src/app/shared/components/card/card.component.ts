@@ -113,6 +113,7 @@ export class CardComponent {
     //sessionStorage.removeItem('OFFERER_Item');
     sessionStorage.removeItem('RECEIVER_Id');
     //sessionStorage.removeItem('RECEIVER_Item');
+    this.router.navigate(['inventory']).then(()=>window.location.reload());
     
   }
 
