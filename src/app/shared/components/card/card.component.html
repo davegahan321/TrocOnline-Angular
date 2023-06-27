@@ -19,7 +19,7 @@
         <p>
             <button class="button" *ngIf="IsinInventory()" mat-button (click)="goToItemEdit()">edit</button>
             <button class="button" *ngIf="Items.owner_Id!=userid" mat-button (click)="yoink2(Items.id,Items.owner_Id)">Trade</button>
-            <button class="button" *ngIf="IsinInventory()" mat-button (click)="yoink1(Items.id)">AddToOffer</button>
+            <button class="button" *ngIf="IsinInventoryAndIsReady()" mat-button (click)="yoink1(Items.id)">AddToOffer</button>
         </p>
 
       </mat-card-content>

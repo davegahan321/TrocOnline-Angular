@@ -29,6 +29,16 @@ export class InventoryComponent implements OnInit {
     this.router.navigate(['item-form']).then(()=>window.location.reload());
   }
 
+  cancelOffer(){
+    sessionStorage.removeItem('RECEIVER_Item');
+    sessionStorage.removeItem('RECEIVER_Id');
+    this.router.navigate(['inventory']).then(()=>window.location.reload());
+  }
   
-  
+  IsinInventoryAndIsReady(){
+    if(sessionStorage.getItem('RECEIVER_Item')){
+      return this.router.url.includes('inventory')
+    }
+    return console.log("no");
+  }
 }

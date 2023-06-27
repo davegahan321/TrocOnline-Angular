@@ -2,6 +2,9 @@
 <div class="addButton">
     <button class="button" mat-button (click)="goToItemForm()" >Add Item</button>
 </div>
+<div class="addButton">
+    <button *ngIf="IsinInventoryAndIsReady()" class="button" mat-button (click)="cancelOffer()" >Cancel Offer</button>
+</div>
 
 <div class="container">
     <main class="grid">

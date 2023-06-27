@@ -35,6 +35,13 @@ export class CardComponent {
     return this.router.url.includes('inventory');
   }
 
+  IsinInventoryAndIsReady(){
+    if(sessionStorage.getItem('RECEIVER_Item')){
+      return this.router.url.includes('inventory')
+    }
+    return console.log("no");
+  }
+
   EditItem(model:any){
     var ItemId= this.Items.id;
     return this.http.post(this.ItemsUrl +ItemId,model);
