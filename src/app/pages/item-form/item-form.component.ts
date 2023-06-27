@@ -35,7 +35,7 @@ export class ItemFormComponent implements OnInit {
       const uploadTask = await this.firestorage.upload(path,this.selectedFile);
       const url = this.getImageUrl(path).subscribe();
       
-       //const url = (await (await uploadTask).ref.getDownloadURL()).toString();
+       
        console.log(url);
        return url;
     }
@@ -67,12 +67,11 @@ export class ItemFormComponent implements OnInit {
         this.router.navigate(['inventory']).then(()=>window.location.reload());
       }));
       
-       //const url = (await (await uploadTask).ref.getDownloadURL()).toString()
+      
     }
     else return console.log('no file uploaded')
 
-    //var img = this.uploadImage();
-    //var img = this.urlpath.toString();
+    
     const AddItemObserver = {
 
       next : (x: any) => console.log('Item Added !!'),

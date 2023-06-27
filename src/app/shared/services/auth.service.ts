@@ -33,10 +33,8 @@ export class AuthService {
           this.decodedToken = this.helper.decodeToken(user.token);
           this.router.navigate(['']).then(()=>window.location.reload());
           console.log(this.decodedToken.nameid)
-          //console.log(this.decodedToken);
         }
         console.log(response.status);
-        //console.log(model);
        
       }
       )

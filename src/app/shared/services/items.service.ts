@@ -134,8 +134,7 @@ export class ItemsService {
     let options = {headers:headers}
     const token = sessionStorage.getItem('token')
     this.decodedToken= this.helper.decodeToken(token!);
-    //var jsonOwner = JSON.stringify(Owner);
-    //console.log(jsonOwner);
+
     return this.http.put(this.ItemsUrl+"UpdateOwner_Id/"+id,model,options);
   }
   
